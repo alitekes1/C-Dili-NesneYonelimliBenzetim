@@ -1,11 +1,11 @@
 #include "plant.h"
 
-Plant new_plant(int value, char *symbol)
+Plant new_plant(int value, char *symbol, int location)
 {
     Plant this;
     this = (Plant)malloc(sizeof(struct PLANT));
     this->delete_plant = &delete_plant;
-    this->super = new_Alive(value, symbol);
+    this->super = new_Alive(value, symbol, location);
     // eğer soyut sınıfımız olsaydı burada this/super/soyutsınıf a
     // aşağıda gövdesini yazdığımız fonksiyonu atardık.
     return this;

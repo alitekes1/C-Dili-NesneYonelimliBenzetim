@@ -11,6 +11,8 @@ int main()
     Flea flea = new_Flea(18, "P");       // pire
     Beetle beetle = new_Beetle(15, "C"); // böcek
     habitat->showHabitat(habitat);
-    // habitat->yemeIslemleri(habitat);
+    habitat->yemeIslemleri(habitat);
+    printf("\n----------\n");
+    habitat->showHabitat(habitat);
     return 0;
 }

@@ -23,7 +23,8 @@ struct HABITAT
     void (*delete_Habitat)(struct HABITAT *);
     void (*readFile)(struct HABITAT *, char *filepath);
     void (*yemeIslemleri)(struct HABITAT *);
-    void (*assignAliveToHabitat)(struct HABITAT*);
+    void (*assignAliveToHabitat)(struct HABITAT *);
+    void (*deneme)(struct HABITAT *, char, char, Alive *, Alive *, char, char);
     // sadece buraya eğer bir fonksiyon eklersek (aşağıya değil) soyut sınıf benzetmesi olur.
 };
 typedef struct HABITAT *Habitat;
@@ -37,4 +38,6 @@ void showHabitat(const Habitat);
 void assignAliveToHabitat(const Habitat);
 void readFile(const Habitat, char *filepath);
 void yemeIslemleri(const Habitat);
+void deneme(const Habitat this, char pointerSymbol, char currentSymbol, Alive *pointer, Alive *currentAlive, char yiyebildikleri1, char yiyebildikleri2);
+
 #endif

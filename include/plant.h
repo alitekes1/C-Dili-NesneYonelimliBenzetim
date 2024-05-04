@@ -15,6 +15,6 @@ struct PLANT
 typedef struct PLANT *Plant;
 
 void delete_plant(const Plant);
-Plant new_plant(int value, char *symbol);
+Plant new_plant(int value, char *symbol, int location);
 // eğer soyut sınıflar varsa sadece burada tanımlanır.
 #endif

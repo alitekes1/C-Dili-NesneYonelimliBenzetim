@@ -1,12 +1,13 @@
 #include "alive.h"
 
 // eğer private benzetmesi yapmak istiyorsak sadece burada ilgili fonksiyonu tanımlayabiliriz.
-Alive new_Alive(int value, char *symbol)
+Alive new_Alive(int value, char *symbol, int location)
 {
     Alive this;
     this = (Alive)(malloc(sizeof(struct ALIVE)));
     this->symbol = symbol;
     this->value = value;
+    this->location = location;
     this->getAliveSymbol = &getAliveSymbol;
     this->setAliveSymbol = &setAliveSymbol;
     this->delete_Alive = &delete_Alive;

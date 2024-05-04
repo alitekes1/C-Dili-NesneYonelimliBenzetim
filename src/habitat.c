@@ -13,6 +13,7 @@ Habitat new_Habitat()
     this->setSize = &setSize;
     this->yemeIslemleri = &yemeIslemleri;
     this->assignAliveToHabitat = &assignAliveToHabitat;
+    this->deneme = &deneme;
     return this;
 }
 void setRow(const Habitat this, int row)
@@ -30,32 +31,37 @@ void setSize(const Habitat this, int size)
 void delete_Habitat(const Habitat this)
 {
 }
-void deneme(const Habitat this, char *pointerSymbol, char *currentSymbol, Alive *pointer, Alive *currentAlive, char *yiyebildikleri1, char *yiyebildikleri2)
+void deneme(const Habitat this, char pointerSymbol, char currentSymbol, Alive *pointer, Alive *currentAlive, char yiyebildikleri1, char yiyebildikleri2)
 {
+    char *X = "X";
+    // printf("gelen veriler: %c %c %c %c", pointerSymbol, currentSymbol, yiyebildikleri1, yiyebildikleri2);
+    // getchar();
+
     if (pointerSymbol == yiyebildikleri1 || pointerSymbol == yiyebildikleri2)
     {
         // bitki yeme hakkına sahip
-        (*pointer)->setAliveSymbol("X");
+        (*pointer)->setAliveSymbol(*pointer, X);
+        // printf("%s\n", (*pointer)->getAliveSymbol(*pointer));
     }
     else if (pointerSymbol == currentSymbol)
     {
         // benzer türde eleman geldi. diğer koşullara bakmak gerekiyor.
+
         if ((*currentAlive)->value > (*pointer)->value)
         {
-            (*pointer)->setAliveSymbol("X");
+            (*pointer)->setAliveSymbol(*pointer, X);
         }
         else if ((*currentAlive)->value < (*pointer)->value)
         {
-            (*currentAlive)->setAliveSymbol("X");
+            (*currentAlive)->setAliveSymbol(*currentAlive, X);
         }
         else
         {
-            // konumlarına bakılacak.
-        }
+                }
     }
     else
     {
-        (*currentAlive)->setAliveSymbol("X");
+        (*currentAlive)->setAliveSymbol(*currentAlive, X);
         // bitki yeme hakkına sahip değil. yani böcek geldi.bitki yenilecek.
         currentAlive = pointer;
     }
@@ -65,32 +71,44 @@ void yemeIslemleri(const Habitat this)
     Alive *currentAlive = this->allAlives[0];
     Alive *pointer = this->allAlives[1];
     int counter = 0;
-    while (counter != this->size)
+    int sayac = 0;
+    while (counter !=)
     {
         if ((*currentAlive)->symbol == "X")
         {
-            currentAlive++;
+            // printf("ife girdi");
+            currentAlive = this->allAlives[counter + 1];
+            counter++;
         }
-        char *currentSymbol = (*currentAlive)->symbol;
-        switch (currentSymbol)
+        else
         {
-            char *pointerSymbol = (*pointer)->symbol;
-        case "B":
-            deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, "P", "S");
-            break;
-        case "C":
-            deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, "B", "P");
-            break;
-        case "S":
-            deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, "P", "C");
-            break;
-        case "P":
-            deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, "A", "A");
-            break;
-        default:
-            break;
+            char currentSymbol = *((*currentAlive)->symbol);
+            char pointerSymbol = *((*pointer)->symbol);
+            // printf("okunan veriler: %c %c\n\n", pointerSymbol, currentSymbol);
+            switch (currentSymbol)
+            {
+            case 'B':
+                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'P', 'S');
+                break;
+            case 'C':
+                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'B', 'P');
+                break;
+            case 'S':
+                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'P', 'C');
+                break;
+            case 'P':
+                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'A', 'A');
+                break;
+            default:
+                printf("default a girdi");
+                break;
+            }
+            pointer = this->allAlives[counter];
+            // pointer++;
+            // counter++;
         }
-        pointer++;
+        // counter++;
+        printf("counter: %d\n", counter);
     }
 }
 
