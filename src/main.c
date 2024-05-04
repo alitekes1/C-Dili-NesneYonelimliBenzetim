@@ -5,12 +5,12 @@
 int main()
 {
     Habitat habitat = new_Habitat();
+    habitat->readFile(habitat, "C://Users//acerr//Desktop//Veri.txt");
     Alive alive = new_Alive(15, "A");    // canli
     Fly fly = new_Fly(20, "S");          // sinek
     Flea flea = new_Flea(18, "P");       // pire
     Beetle beetle = new_Beetle(15, "C"); // böcek
-    habitat->readFile(habitat, "C://Users//acerr//Desktop//Veri.txt");
     habitat->showHabitat(habitat);
-
+    // habitat->yemeIslemleri(habitat);
     return 0;
 }
