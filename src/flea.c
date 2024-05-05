@@ -1,9 +1,9 @@
 #include "flea.h"
-Flea new_Flea(int value, char *symbol)
+Flea new_Flea(int value, char *symbol, int location)
 {
     Flea this;
     this = (Flea)malloc(sizeof(Flea));
-    this->super = new_Alive(value, symbol);
+    this->super = new_Alive(value, symbol, location);
     return this;
 }
 void delete_Flea(const Flea this)

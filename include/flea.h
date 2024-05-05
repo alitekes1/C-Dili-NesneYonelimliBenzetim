@@ -12,7 +12,7 @@ struct FLEA
     void (*delete_Flea)(struct FLEA *);
 };
 typedef struct FLEA *Flea;
-Flea new_Flea(int value, char *symbol);
+Flea new_Flea(int value, char *symbol,int location);
 void delete_Flea(const Flea);
 
 #endif

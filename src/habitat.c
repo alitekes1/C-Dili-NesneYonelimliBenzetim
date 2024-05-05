@@ -11,9 +11,9 @@ Habitat new_Habitat()
     this->delete_Habitat = &delete_Habitat;
     this->readFile = &readFile;
     this->setSize = &setSize;
-    this->yemeIslemleri = &yemeIslemleri;
+    this->eatOperations = &eatOperations;
     this->assignAliveToHabitat = &assignAliveToHabitat;
-    this->deneme = &deneme;
+    this->compareAlives = &compareAlives;
     return this;
 }
 void setRow(const Habitat this, int row)
@@ -31,22 +31,18 @@ void setSize(const Habitat this, int size)
 void delete_Habitat(const Habitat this)
 {
 }
-void deneme(const Habitat this, char pointerSymbol, char currentSymbol, Alive *pointer, Alive *currentAlive, char yiyebildikleri1, char yiyebildikleri2)
+void compareAlives(const Habitat this, char pointerSymbol, char currentSymbol, Alive *pointer, Alive *currentAlive, char yiyebildikleri1, char yiyebildikleri2)
 {
     char *X = "X";
-    // printf("gelen veriler: %c %c %c %c", pointerSymbol, currentSymbol, yiyebildikleri1, yiyebildikleri2);
-    // getchar();
-
+    // showHabitat(this);
     if (pointerSymbol == yiyebildikleri1 || pointerSymbol == yiyebildikleri2)
     {
         // bitki yeme hakkına sahip
         (*pointer)->setAliveSymbol(*pointer, X);
-        // printf("%s\n", (*pointer)->getAliveSymbol(*pointer));
     }
     else if (pointerSymbol == currentSymbol)
     {
         // benzer türde eleman geldi. diğer koşullara bakmak gerekiyor.
-
         if ((*currentAlive)->value > (*pointer)->value)
         {
             (*pointer)->setAliveSymbol(*pointer, X);
@@ -57,59 +53,62 @@ void deneme(const Habitat this, char pointerSymbol, char currentSymbol, Alive *p
         }
         else
         {
-                }
+            if ((*currentAlive)->location > (*pointer)->location)
+            {
+                (*pointer)->setAliveSymbol(*pointer, X);
+            }
+            else
+            {
+                (*currentAlive)->setAliveSymbol(*currentAlive, X);
+            }
+        }
     }
     else
     {
         (*currentAlive)->setAliveSymbol(*currentAlive, X);
-        // bitki yeme hakkına sahip değil. yani böcek geldi.bitki yenilecek.
-        currentAlive = pointer;
     }
 }
-void yemeIslemleri(const Habitat this)
+void eatOperations(const Habitat this)
 {
     Alive *currentAlive = this->allAlives[0];
     Alive *pointer = this->allAlives[1];
     int counter = 0;
-    int sayac = 0;
-    while (counter !=)
+    int sayac = 1;
+    while (counter != this->size - 1)
     {
-        if ((*currentAlive)->symbol == "X")
+        system("cls");
+        char currentSymbol = *(*currentAlive)->symbol;
+        if (currentSymbol == 'X')
         {
-            // printf("ife girdi");
-            currentAlive = this->allAlives[counter + 1];
-            counter++;
+            currentAlive = this->allAlives[counter];
         }
         else
         {
-            char currentSymbol = *((*currentAlive)->symbol);
+            counter++;
+            sayac++;
             char pointerSymbol = *((*pointer)->symbol);
-            // printf("okunan veriler: %c %c\n\n", pointerSymbol, currentSymbol);
             switch (currentSymbol)
             {
             case 'B':
-                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'P', 'S');
+                compareAlives(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'P', 'S');
                 break;
             case 'C':
-                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'B', 'P');
+                compareAlives(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'B', 'P');
                 break;
             case 'S':
-                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'P', 'C');
+                compareAlives(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'P', 'C');
                 break;
             case 'P':
-                deneme(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'A', 'A');
+                compareAlives(this, pointerSymbol, currentSymbol, pointer, currentAlive, 'A', 'A');
                 break;
             default:
-                printf("default a girdi");
                 break;
             }
-            pointer = this->allAlives[counter];
-            // pointer++;
-            // counter++;
+            pointer = this->allAlives[sayac];
         }
-        // counter++;
-        printf("counter: %d\n", counter);
+        showHabitat(this);
     }
+    printf("\nKazanan : %s : (%d,%d)", (*currentAlive)->symbol, ((*currentAlive)->location) / (this->col), (*currentAlive)->location % this->col);
 }
 
 void showHabitat(const Habitat this)
@@ -121,7 +120,7 @@ void showHabitat(const Habitat this)
         {
             printf("\n");
         }
-        printf("%s(%d) ", (*currentAlive)->symbol, (*currentAlive)->value);
+        printf("%s ", (*currentAlive)->symbol);
     }
 }
 void assignAliveToHabitat(const Habitat this)
@@ -131,22 +130,22 @@ void assignAliveToHabitat(const Habitat this)
         int number = this->values[i];
         if (number > 0 && number < 10)
         {
-            Plant plant = new_plant(number, "B");
+            Plant plant = new_plant(number, "B", i);
             this->allAlives[i] = (Alive *)plant;
         }
         else if (number > 9 && number < 21)
         {
-            Beetle beetle = new_Beetle(number, "C");
+            Beetle beetle = new_Beetle(number, "C", i);
             this->allAlives[i] = (Alive *)beetle;
         }
         else if (number > 20 && number < 51)
         {
-            Fly fly = new_Fly(number, "S");
+            Fly fly = new_Fly(number, "S", i);
             this->allAlives[i] = (Alive *)fly;
         }
         else if (number > 50 && number < 100)
         {
-            Flea flea = new_Flea(number, "P");
+            Flea flea = new_Flea(number, "P", i);
             this->allAlives[i] = (Alive *)flea;
         }
         else

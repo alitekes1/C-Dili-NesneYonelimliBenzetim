@@ -12,7 +12,7 @@ struct FLY
     void (*delete_Fly)(struct FLY *);
 };
 typedef struct FLY *Fly;
-Fly new_Fly(int value, char *symbol);
+Fly new_Fly(int value, char *symbol, int location);
 void delete_Fly(const Fly);
 
 #endif

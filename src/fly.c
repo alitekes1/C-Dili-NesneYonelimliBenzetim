@@ -1,9 +1,9 @@
 #include "Fly.h"
-Fly new_Fly(int value, char *symbol)
+Fly new_Fly(int value, char *symbol, int location)
 {
     Fly this;
     this = (Fly)malloc(sizeof(Fly));
-    this->super = new_Alive(value, symbol);
+    this->super = new_Alive(value, symbol, location);
     return this;
 }
 void delete_Fly(const Fly this)

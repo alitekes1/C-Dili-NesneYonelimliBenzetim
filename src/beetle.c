@@ -1,9 +1,9 @@
 #include "beetle.h"
-Beetle new_Beetle(int value, char *symbol)
+Beetle new_Beetle(int value, char *symbol, int location)
 {
     Beetle this;
     this = (Beetle)malloc(sizeof(struct BEETLE));
-    this->super = new_Alive(value, symbol);
+    this->super = new_Alive(value, symbol, location);
     return this;
 }
 void delete_Beetle(const Beetle this)

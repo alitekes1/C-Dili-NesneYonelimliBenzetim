@@ -12,7 +12,7 @@ struct BEETLE
     void (*delete_Beetle)(struct BEETLE *);
 };
 typedef struct BEETLE *Beetle;
-Beetle new_Beetle(int value, char *symbol);
+Beetle new_Beetle(int value, char *symbol,int location);
 void delete_Beetle(const Beetle);
 
 #endif
