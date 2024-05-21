@@ -6,6 +6,10 @@ Ardından bu nesneler bir habitat ortamına aktarılarak birbirleri arasında sa
 
 
 
-https://github.com/alitekes1/C-Dili-NesneYonelimliBenzetim/assets/112067233/c3236245-27b3-4596-8777-2ecf9f1d2d10 https://github.com/alitekes1/C-Dili-NesneYonelimliBenzetim/assets/112067233/3a47e168-94a1-48f9-b722-a24a0ff7d86e
 
+https://github.com/alitekes1/C-Dili-NesneYonelimliBenzetim/assets/112067233/f0db7d5f-e8b7-4004-ac17-3361a29c64b9
+
+
+
+https://github.com/alitekes1/C-Dili-NesneYonelimliBenzetim/assets/112067233/6e3f9216-f651-469c-a62c-b9d8b59dbf29
 
