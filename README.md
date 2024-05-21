@@ -1,0 +1,2 @@
+Projede C dilinde nesne yönelimli benzetim yapılarak bu paradigmanın özelliklerinin kullanılması istenmiştir. Program çalıştığında txt dosyasında sayı verileri okunarak, her sayı değerine karşılık belirli bir yapıda canlı türetilmiştir.
+Ardından bu nesneler bir habitat ortamına aktarılarak birbirleri arasında sahip oldukları değerlere göre kıyaslanmıştır ve duruma göre canlı yok edilmiştir. Bu işlem son 1 canlı kalana kadar devam etmiştir. 25,500,1000,100.000 adet canlıdan oluşan dosya denenmiştir ve herhangi bir sorun çıkmamıştır.
